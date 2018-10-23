@@ -1,0 +1,9 @@
+Let's get together for another exciting talk and discussion about programming
+language theory!  This event will focus on type theory; the fundamentals of the
+theory, its basis within programming language type systems, its importance in
+functional programming, and its relevance to us as Clojure programmers.
+
+The talk will be given by Clojure programmer and aspiring type theory
+aficionado, Bruce Miller.  Bring your brains (and your appetites) for what is
+sure to be a worldview-expanding, eyebrow-raising, and intellect-flexing
+evening of computer science camaraderie.
