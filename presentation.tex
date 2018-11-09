@@ -17,51 +17,41 @@
 \end{frame}
 
 \begin{frame}
-\frametitle{Overview}
-
-\begin{description}
-\item[Type Theory]
-\item[Type Systems]
-\item[Static vs. Dynamic]
-\item[Types in Clojure]
-\end{description}
-
+  \frametitle{Purpose}
+  \centerline{\includegraphics[scale=0.4]{img/transformation.png}}
 \end{frame}
-
 
 \begin{frame}
-  \frametitle{Purpose}
-
-  \centerline{\includegraphics[scale=0.4]{img/transformation.png}}
-
+\frametitle{Overview}
+\begin{description}
+\item[Type Theory] Introduction and fundamentals
+\item[Type Systems] Type theory applied to programming languages
+\item[Static vs. Dynamic] And other dichotomies
+\item[Types vs. Clojure] Begun, the Type Wars have
+\end{description}
 \end{frame}
-
 
 \begin{frame}
   \frametitle{Type Theory}
-
   Some History:
 \begin{description}
 \item[1902] Types are first proposed by Bertrand Russell as a solution to
-  Russell's Paradox in Gottlob Frege's Naïve Set Theory.
+  Russell's Paradox in Cantor's Na{\"i}ve Set Theory.
 \item[1940] Types are first applied to the programming language theory,
-  combined with Alonzo Church's λ-calculus.
+  combined with Alonzo Church's $\lambda$-calculus.
 \item[1972] System F created.  Later to influence ML, Caml, Haskell.
-\item[1972] Per Martin Löf Type Theory introduced.  Creates what's now known as
-  dependent type theory, as used in Agda, Idris, Coq, Lean.
+\item[1972] Per Martin L{\"o}f Type Theory introduced.  Creates what's now
+  known as dependent type theory, as used in Agda, Idris, Coq, Lean.
 \item[2009] What is now known as Homotopy Type Theory introduced in a paper by
   Voevodsky.
 \end{description}
-
-
 \end{frame}
 
 \begin{frame}
 \frametitle{Type Systems}
-
 From Pierce:
-
 \vspace{20pt}
+
 \textit{A type system is a tractable syntactic method for proving the absence of
   certain program behaviors by classifying phrases according to the kinds of
   values they compute.}
@@ -69,32 +59,36 @@ From Pierce:
 \end{frame}
 
 \begin{frame}
-\frametitle{Type Systems}
-
-From Pierce:
-
-\vspace{20pt}
-\textit{A type system is a tractable syntactic method for proving the absence of
-  certain program behaviors by classifying phrases according to the kinds of
-  values they compute.}
-
+\frametitle{Type Dichotomies}
 \end{frame}
 
 \begin{frame}
-\frametitle{Type Systems}
-
-From Pierce:
-
-\vspace{20pt}
-\textit{A type system is a tractable syntactic method for proving the absence of
-  certain program behaviors by classifying phrases according to the kinds of
-  values they compute.}
-
+  \frametitle{Static vs. Dynamic Typing in Practice}
+  Dynamic Types:
+\begin{description}
+\item[Brevity] Reduction in syntactic overhead.
+\item[]
+\end{description}
 \end{frame}
 
 \begin{frame}
 \frametitle{Resources}
+\begin{thebibliography}{9}
 
+\bibitem{TTFP} R. Nedepelt, H. Geuvers, \emph{Type Theory and Formal Proof: An
+    Introduction}, 1st Edition, Cambridge Univ. Press, Cambridge, MA, 2014.
+
+\bibitem{TAPL} B. Pierce, \emph{Types and Programming Languages}, MIT
+  Press, Cambridge, MA, 2002.
+
+\bibitem{PandT} J. Girard, \emph{Proofs and Types}, Cambridge Tracts on
+  Comp. Sci., Cambridge, MA, 1989.
+
+\bibitem{ATTAPL} B. Pierce, \emph{Advanced Topics in Types and Programming
+    Languages}, MIT Press, Cambridge, MA, 2004.
+
+
+\end{thebibliography}
 \end{frame}
 
 
