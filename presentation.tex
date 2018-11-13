@@ -1,8 +1,15 @@
 \documentclass{beamer}
-\usepackage{graphicx}
+\usepackage{graphicx,proof}
 \usetheme{Boadilla}
 \usecolortheme{beetle}
 
+\newcommand{\G}{\Gamma}
+\newcommand{\D}{\Delta}
+\newcommand{\entails}{\vdash}
+\newcommand{\rulename}[1]{\text{\textsc{(#1)}}}
+\newcommand{\pval}[1]{#1\; \val_{\mathsf{p}}}
+\newcommand{\opf}[1]{\mathtt{#1}}
+\newcommand{\pres}[1]{\opf{result}~#1}
 
 \title{Group Therapy for the Type-Curious}
 \subtitle{Theory \& Practice}
@@ -13,82 +20,148 @@
 \begin{document}
 
 \begin{frame}
-\titlepage
+  \titlepage
 \end{frame}
 
 \begin{frame}
-  \frametitle{Purpose}
+  \frametitle{Our Journey}
   \centerline{\includegraphics[scale=0.4]{img/transformation.png}}
 \end{frame}
 
 \begin{frame}
-\frametitle{Overview}
-\begin{description}
-\item[Type Theory] Introduction and fundamentals
-\item[Type Systems] Type theory applied to programming languages
-\item[Static vs. Dynamic] And other dichotomies
-\item[Types vs. Clojure] Begun, the Type Wars have
-\end{description}
+  \frametitle{Overview}
+  \begin{description}
+  \item[Type Theory] Introduction and fundamentals
+  \item[Type Systems] Type theory applied to programming languages
+  \item[Static vs. Dynamic] And other dichotomies
+  \item[Types vs. Clojure] Begun, the Type Wars have
+  \end{description}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Type Theory}
+  \frametitle{History of Type Theory}
   Some History:
-\begin{description}
-\item[1902] Types are first proposed by Bertrand Russell as a solution to
-  Russell's Paradox in Cantor's Na{\"i}ve Set Theory.
-\item[1940] Types are first applied to the programming language theory,
-  combined with Alonzo Church's $\lambda$-calculus.
-\item[1972] System F created.  Later to influence ML, Caml, Haskell.
-\item[1972] Per Martin L{\"o}f Type Theory introduced.  Creates what's now
-  known as dependent type theory, as used in Agda, Idris, Coq, Lean.
-\item[2009] What is now known as Homotopy Type Theory introduced in a paper by
-  Voevodsky.
-\end{description}
+  \begin{description}
+  \item[1902] Types are first proposed by Bertrand Russell as a solution to
+    Russell's Paradox in Cantor's na{\"i}ve set theory.
+  \item[1940] Types are first applied to the programming language theory,
+    combined with Alonzo Church's $\lambda$-calculus.
+  \item[1972] System F created.  Later to influence ML, Caml, Haskell.
+  \item[1972] Per Martin-L{\"o}f's intuitionistic type theory introduced.
+    Creates what's now known as dependent type theory, as used in Agda, Idris,
+    Coq, Lean.
+  \item[2009] What is now known as homotopy type theory introduced in a paper
+    by Voevodsky.
+  \end{description}
 \end{frame}
 
 \begin{frame}
-\frametitle{Type Systems}
-From Pierce:
-\vspace{20pt}
+  \frametitle{Type Judgements}
+  \fbox{An introduction to type theory, just as relates to type systems.}
 
-\textit{A type system is a tractable syntactic method for proving the absence of
-  certain program behaviors by classifying phrases according to the kinds of
-  values they compute.}
+  \vspace{20pt}
+  Judgements describe type systems.
+
+  \[ \G \vdash \Im \]
+
+  $\Im$ is an assertion. $\Gamma$ here is the static typing environment, and
+  could be the empty set $\emptyset$, or a list of variables and their types.
+
+  \[ \G \vdash \textit{M} : \textit{A} \]
+
+  \textit{M} has type rule \textit{A} in $\Gamma$.
+
+  \[ \emptyset \vdash \textit{true} : \textit{Bool} \]
+  \[ \G \vdash \Diamond \]
+\end{frame}
+
+\begin{frame}
+  \frametitle{Type Rules}
+  \vspace{20pt}
+  Rules are composed of judgements.\\
+  \vspace{10pt}
+  General form:
+  \[ \infer[(Rule\:name)(annotations)]{\Gamma \vdash \Im}{\Gamma_1 \vdash \Im_1
+      \ldots \Gamma_1 \vdash \Im_1} \]
+  Some examples:
+  \vspace{2pt}
+  \[ \infer[(Env\:\emptyset)]{\emptyset \vdash \Diamond}{} \]
+  \vspace{2pt}
+  \[ \infer[(Val\:\textit{n})(\textit{n} = 0,1,\ldots)]{\G \vdash n :
+      \textit{Nat}}{\G \vdash \Diamond} \]
+  \vspace{2pt}
+  \[ \infer[(Val\:+)]{\G \vdash \textit{M} + \textit{N} : \textit{Nat}}{\G
+      \vdash \textit{M} : \textit{Nat}, \G \vdash \textit{M} : \textit{Nat}} \]
+\end{frame}
+
+\begin{frame}
+  \frametitle{Type Systems}
+  From Pierce \cite{TAPL}:
+  \vspace{20pt}
+
+  \textit{A type system is a tractable syntactic method for proving the absence
+    of certain program behaviors by classifying phrases according to the kinds
+    of values they compute.}
 
 \end{frame}
 
 \begin{frame}
-\frametitle{Type Dichotomies}
+  \frametitle{Type Dichotomies}
+  From Wikipedia:
+  \vspace{20pt}
+
+  \textit{Static type checking is the process of verifying the
+    type safety of a program based on analysis of a program's text (source
+    code). If a program passes a static type checker, then the program is
+    guaranteed to satisfy some set of type safety properties for all possible
+    inputs.}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Static vs. Dynamic Typing in Practice}
-  Dynamic Types:
-\begin{description}
-\item[Brevity] Reduction in syntactic overhead.
-\item[]
-\end{description}
+  \frametitle{The Static Typing Position}
+  Aggregated from Haskell user opinions:
+  \begin{itemize}
+  \item \textbf{Reduction in bugs} Detection at compile time.  Closed vs open programs.
+  \item \textbf{Communicating intent} Type signatures, type declarations, etc.
+  \item \textbf{Encoding program logic} Making bugs into type errors, refactoring.
+  \item \textbf{Easier for n00bs} Naming nouns, nouns describe what they are/do.
+  \item \textbf{Esoterica} Type-level programming, C-H, CT, etc.
+  \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Resources}
-\begin{thebibliography}{9}
+  \frametitle{The Dynamic Typing Position}
+  Aggregated from Clojure user opinions:
+  \begin{itemize}
+  \item \textbf{Real world data} In real life, data is sparse and/or unstructured.
+  \item \textbf{Syntactic overhead} Code density, reduced logic distribution,
+    small-scale development, REPLs.
+  \item \textbf{Ease of Maintenance} Adding to and refactoring code.
+  \item \textbf{Lazy-loading needed parts} spec, core.typed, core.logic
+  \item \textbf{Type errors vs real life} Clojure ranks as one of the lowest bug-prone
+    languages.
+  \end{itemize}
 
-\bibitem{TTFP} R. Nedepelt, H. Geuvers, \emph{Type Theory and Formal Proof: An
-    Introduction}, 1st Edition, Cambridge Univ. Press, Cambridge, MA, 2014.
+\end{frame}
 
-\bibitem{TAPL} B. Pierce, \emph{Types and Programming Languages}, MIT
-  Press, Cambridge, MA, 2002.
+\begin{frame}
+  \frametitle{Resources}
+  \begin{thebibliography}{9}
 
-\bibitem{PandT} J. Girard, \emph{Proofs and Types}, Cambridge Tracts on
-  Comp. Sci., Cambridge, MA, 1989.
+  \bibitem{TTFP} R. Nedepelt, H. Geuvers, \emph{Type Theory and Formal Proof: An
+      Introduction}, 1st Edition, Cambridge Univ. Press, Cambridge, MA, 2014.
 
-\bibitem{ATTAPL} B. Pierce, \emph{Advanced Topics in Types and Programming
-    Languages}, MIT Press, Cambridge, MA, 2004.
+  \bibitem{TAPL} B. Pierce, \emph{Types and Programming Languages}, MIT
+    Press, Cambridge, MA, 2002.
+
+  \bibitem{PandT} J. Girard, \emph{Proofs and Types}, Cambridge Tracts on
+    Comp. Sci., Cambridge, MA, 1989.
+
+  \bibitem{ATTAPL} B. Pierce, \emph{Advanced Topics in Types and Programming
+      Languages}, MIT Press, Cambridge, MA, 2004.
 
 
-\end{thebibliography}
+  \end{thebibliography}
 \end{frame}
 
 
