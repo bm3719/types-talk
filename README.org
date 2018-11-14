@@ -5,4 +5,6 @@
 This is the LaTeX source for a presentation on introductory type theory, type
 systems, and their relevance to the programming language Clojure.
 
-The talk will be given on 2018-11-14 at Capital One in Tysons Corner, VA.
+The talk will be given on 2018-11-14 at ATA, LLC in Vienna, VA.
+
+https://www.meetup.com/Cap-Clug/events/255750803
