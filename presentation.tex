@@ -41,8 +41,8 @@
   \begin{description}
   \item[1902] Types are first proposed by Bertrand Russell as a solution to
     Russell's Paradox in Cantor's na{\"i}ve set theory.
-  \item[1940] Types are first applied to the programming language theory,
-    combined with Alonzo Church's $\lambda$-calculus.
+  \item[1940] Types are first applied to programming language theory, combined
+    with Alonzo Church's $\lambda$-calculus.
   \item[1972] System F created.  Later to influence ML, Caml, Haskell.
   \item[1972] Per Martin-L{\"o}f's intuitionistic type theory introduced.
     Creates what's now known as dependent type theory, as used in Agda, Idris,
@@ -61,7 +61,7 @@
   $\Im$ is an assertion. $\Gamma$ here is the static typing environment, and
   could be the empty set $\emptyset$, or a list of variables and their types.\\
   \[ \G \entails \textit{M} : \textit{A} \]\\
-  \textit{M} has type rule \textit{A} in $\Gamma$.\\
+  \textit{M} has type \textit{A} in $\Gamma$.\\
   \[ \emptyset \entails \textit{true} : \textit{Bool} \]
   \[ \G \entails \Diamond \]
 \end{frame}
@@ -92,12 +92,13 @@
     of certain program behaviors by classifying phrases according to the kinds
     of values they compute.}
   \vspace{20pt}
+  Some notes:\\
   \begin{itemize}
     \item Languages without type systems are untyped.
     \item Type systems are parts of programming languages or can be implemented
       on their own.
-    \item The line between the type system and language implementation can be
-      fuzzy, e.g. duck typing, type coercion.
+    \item The line between the type system and general language implementation
+      can be fuzzy, e.g. duck typing, type coercion.
     \item Type safety is the degree to with a language enforces the prevention
       of type errors.
   \end{itemize}
@@ -108,9 +109,9 @@
   \centerline{
     \begin{tabular}{|p{3cm}||p{3cm}|}
       \hline
-      static&dynamic\\
-      \hline
       typed&untyped\\
+      \hline
+      static&dynamic\\
       \hline
       explicit&implicit\\
       manifest&inferred\\
@@ -139,7 +140,8 @@
   \frametitle{The Static Typing Position}
   Aggregated from Haskell user opinions:
   \begin{itemize}
-  \item \textbf{Reduction in bugs} Detection at compile time.  Closed vs open programs.
+  \item \textbf{Reduction in bugs} Detection at compile time.  Closed vs. open
+    programs.
   \item \textbf{Communicating intent} Type signatures, type declarations, etc.
   \item \textbf{Encoding program logic} Making bugs into type errors, refactoring.
   \item \textbf{Easier for n00bs} Naming nouns, nouns describe what they are/do.
@@ -156,8 +158,8 @@
     small-scale development, REPLs.
   \item \textbf{Ease of Maintenance} Adding to and refactoring code.
   \item \textbf{Lazy-loading needed parts} spec, core.typed, core.logic
-  \item \textbf{Type errors vs real life} Clojure ranks as one of the lowest bug-prone
-    languages.
+  \item \textbf{Type errors vs. real life} Clojure ranks as one of the lowest
+    bug-prone languages.
   \end{itemize}
 \end{frame}
 
